@@ -127,6 +127,18 @@ class PxPayAuthorizeRequest extends AbstractRequest
         return $this->setParameter('transactionData1', $value);
     }
 
+
+    /**
+     * Set the PxPay TxnData2
+     *
+     * @param string $value Max 255 bytes
+     * @return $this
+     */
+    public function setTransactionData2($value)
+    {
+        return $this->setParameter('transactionData2', $value);
+    }
+
     /**
      * Get the PxPay TxnData2
      *
@@ -141,16 +153,6 @@ class PxPayAuthorizeRequest extends AbstractRequest
         return $this->getParameter('transactionData2');
     }
 
-    /**
-     * Set the PxPay TxnData2
-     *
-     * @param string $value Max 255 bytes
-     * @return $this
-     */
-    public function setTransactionData2($value)
-    {
-        return $this->setParameter('transactionData2', $value);
-    }
 
     /**
      * Get the PxPay TxnData3
@@ -167,6 +169,16 @@ class PxPayAuthorizeRequest extends AbstractRequest
     }
 
     /**
+     * Get the PxPay EnableAddBillCard
+     *
+     * @return mixed
+     */
+    public function getEnableAddBilling()
+    {
+        return $this->getParameter('enableAddBilling');
+    }
+
+    /**
      * Set the TxnData3 field on the request
      *
      * @param string $value Max 255 bytes
@@ -175,6 +187,17 @@ class PxPayAuthorizeRequest extends AbstractRequest
     public function setTransactionData3($value)
     {
         return $this->setParameter('transactionData3', $value);
+    }
+
+    /**
+     * Set the EnableAddBillCard field on the request
+     *
+     * @param string $value Max 1 byte
+     * @return $this
+     */
+    public function setEnableAddBilling($value)
+    {
+        return $this->setParameter('enableAddBilling', $value);
     }
 
     /**
@@ -218,6 +241,11 @@ class PxPayAuthorizeRequest extends AbstractRequest
         if ($this->getCardReference()) {
             $data->DpsBillingId = $this->getCardReference();
         }
+
+        if ($this->getEnableAddBilling()) {
+            $data->EnableAddBillCard = $this->getEnableAddBilling();
+        }
+
 
         return $data;
     }
